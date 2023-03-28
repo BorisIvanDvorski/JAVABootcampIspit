@@ -1,24 +1,24 @@
 public class Truck extends Vehicle{
-    public Truck(String manufacturer, String model, int year, String color, long VIN, String fuelType, int maxPayload) {
+    public Truck(String manufacturer, String model, int year, String color, long VIN, String fuelType, int maxTowingCapacity) {
         super(manufacturer, model, year, color, VIN, fuelType);
-        setMaxPayload(maxPayload);
+        setMaxTowingCapacity(maxTowingCapacity);
     }
 
     @Override
     public String displayVehicle(){
-        return super.displayVehicle()+String.format(" maxPayload=%d)",getMaxPayload());
+        return super.displayVehicle()+String.format(" maxTowingCapacity=%d)",getMaxTowingCapacity());
     }
-    public void setMaxPayload(int maxPayload) {
-        if(maxPayload>=0){
-            this.maxPayload = maxPayload;
+    public void setMaxTowingCapacity(int maxTowingCapacity) {
+        if(maxTowingCapacity>=0){
+            this.maxTowingCapacity = maxTowingCapacity;
         }
         else {
-            throw new IllegalArgumentException("Payload cannot be less than 0!");
+            throw new IllegalArgumentException("TowingCapacity cannot be less than 0!");
         }
     }
-    public int getMaxPayload() {
-        return maxPayload;
+    public int getMaxTowingCapacity() {
+        return maxTowingCapacity;
     }
 
-    private int maxPayload;
+    private int maxTowingCapacity;
 }

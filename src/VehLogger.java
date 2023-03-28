@@ -6,6 +6,7 @@ import java.util.logging.SimpleFormatter;
 public class VehLogger {
     private final static Logger logger;
 
+
     static {
         logger = Logger.getLogger("VehLogger");
         try {

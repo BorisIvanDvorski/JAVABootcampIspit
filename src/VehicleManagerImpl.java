@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 public class VehicleManagerImpl implements VehicleManager {
     public VehicleManagerImpl() {
@@ -25,48 +26,65 @@ public class VehicleManagerImpl implements VehicleManager {
     }
     @Override
     public void removeVehicle(long VIN) throws NoSuchVehicleException{
-        for(var v : fleet){
-            if(v.getVIN()==VIN) {
-                fleet.remove(v);
-                VehLogger.logInfo("Remove vehicle with VIN " + VIN + ".");
+        boolean found=false;
+        for (Iterator<Vehicle> iterator = fleet.iterator(); iterator.hasNext();) {
+            Vehicle vehicle = iterator.next();
+            if(vehicle.getVIN()==VIN) {
+                iterator.remove();
+                VehLogger.logInfo("Removed vehicle with VIN " + VIN + ".");
+                found=true;
             }
         }
-        VehLogger.logError(new NoSuchVehicleException());
-        throw new NoSuchVehicleException();
+        if(!found){
+            VehLogger.logError(new NoSuchVehicleException());
+            throw new NoSuchVehicleException();
+        }
     }
     @Override
     public void searchVehicleManufacturer(String manufacturer) throws NoSuchVehicleException{
+        boolean found=false;
         for(var v : fleet){
             if(v.getManufacturer().equalsIgnoreCase(manufacturer)) {
                 System.out.println(v.displayVehicle());
                 VehLogger.logInfo("Displayed vehicle with manufacturer name "+manufacturer+".");
+                found=true;
             }
         }
-        VehLogger.logError(new NoSuchVehicleException());
-        throw new NoSuchVehicleException();
+        if(!found){
+            VehLogger.logError(new NoSuchVehicleException());
+            throw new NoSuchVehicleException();
+        }
     }
     @Override
     public void searchVehicleModel(String model) throws NoSuchVehicleException{
+        boolean found=false;
         for(var v : fleet){
             if(v.getModel().equalsIgnoreCase(model)) {
                 System.out.println(v.displayVehicle());
                 VehLogger.logInfo("Displayed vehicle with manufacturer name "+model+".");
+                found=true;
             }
         }
-        VehLogger.logError(new NoSuchVehicleException());
-        throw new NoSuchVehicleException();
+        if(!found){
+            VehLogger.logError(new NoSuchVehicleException());
+            throw new NoSuchVehicleException();
+        }
     }
     @Override
     public void searchVehicleVIN(long VIN) throws NoSuchVehicleException{
+        boolean found=false;
         for(var v : fleet){
                 if(v.getVIN()==(VIN)) {
                 System.out.println(v.displayVehicle());
                 VehLogger.logInfo("Displayed vehicle with manufacturer name "+VIN+".");
+                    found=true;
             }
         }
-        VehLogger.logError(new NoSuchVehicleException());
-        throw new NoSuchVehicleException();
+        if(!found){
+            VehLogger.logError(new NoSuchVehicleException());
+            throw new NoSuchVehicleException();
+        }
     }
 
-    private final List<Vehicle> fleet;
+    private List<Vehicle> fleet;
 }

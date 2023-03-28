@@ -8,7 +8,7 @@ public abstract class Vehicle {
         setFuelType(fuelType);
     }
     public String displayVehicle(){
-        return String.format("%s(make='%s', model='%s', year=%d, color='%s', vin='%d', fuelType='%s', ",this.getClass(),getManufacturer(),getModel(),getYear(),getColor(),getVIN(),getFuelType());
+        return String.format("%s(make='%s', model='%s', year=%d, color='%s', vin='%d', fuelType='%s', ",this.getClass().toString().replace("class ",""),getManufacturer(),getModel(),getYear(),getColor(),getVIN(),getFuelType());
     }
 
     public void setManufacturer(String manufacturer) {
