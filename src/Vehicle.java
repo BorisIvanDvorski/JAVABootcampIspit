@@ -7,6 +7,9 @@ public abstract class Vehicle {
         setVIN(VIN);
         setFuelType(fuelType);
     }
+    public String displayVehicle(){
+        return String.format("%s(make='%s', model='%s', year=%d, color='%s', vin='%d', fuelType='%s', ",this.getClass(),getManufacturer(),getModel(),getYear(),getColor(),getVIN(),getFuelType());
+    }
 
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
@@ -15,18 +18,23 @@ public abstract class Vehicle {
         this.model = model;
     }
     public void setYear(int year) {
-        if(1886>year&&year<2024){
+        if((1885<year)&&(year<2024)){
             this.year = year;
         }
         else {
-            throw new IllegalArgumentException("Year must be between 1886 and 2024.");
+            throw new IllegalArgumentException("Year must be more than 1885 and less than 2024!");
         }
     }
     public void setColor(String color) {
         this.color = color;
     }
     public void setVIN(long VIN) {
-        this.VIN = VIN;
+        if(VIN>=0){
+            this.VIN = VIN;
+        }
+        else {
+            throw new IllegalArgumentException("VIN must be a positive value!");
+        }
     }
     public void setFuelType(String fuelType) {
         this.fuelType = fuelType;
