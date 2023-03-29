@@ -8,8 +8,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         VehicleManagerImpl manager = new VehicleManagerImpl();
         boolean working = true;
-        try{
-            while (working) {
+        while(working){
+            try{
                 System.out.print("\nVehicle Fleet Management System\n--------------------------------------\n1. Add a vehicle to the fleet\n2. Search for vehicles by manufacturer or model\n3. Print all vehicles in the fleet\n4. Delete a vehicle from the fleet\n5. Quit\nEnter command: ");
                 int option = scanner.nextInt();
                 switch (option) {
@@ -94,10 +94,10 @@ public class Main {
                         break;
                 }
             }
-        }
-        catch (Exception exception){
-            VehLogger.logError(exception);
-            System.out.println(exception);
+            catch (Exception exception){
+                VehLogger.logError(exception);
+                System.out.println(exception);
+            }
         }
     }
 }
