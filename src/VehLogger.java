@@ -2,26 +2,34 @@ import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
-
+/**
+ * Klasa implementacija loggera
+ */
 public class VehLogger {
-    private final static Logger logger;
+    VehLogger(){
+        handler();
+    }
 
-
-    static {
-        logger = Logger.getLogger("VehLogger");
-        try {
-            FileHandler fileHandler = new FileHandler("logs.log");
-            SimpleFormatter formatter = new SimpleFormatter();
-            fileHandler.setFormatter(formatter);
-            logger.addHandler(fileHandler);
+    /**
+     * Implementacija handlera i formatiranja zapisa u log datoteku.
+     */
+    public void handler(){
+        try{
+        FileHandler fileHandler = new FileHandler("logs.log");
+        SimpleFormatter formatter = new SimpleFormatter();
+        fileHandler.setFormatter(formatter);
+        logger.addHandler(fileHandler);
         } catch (IOException e) {
             logger.warning("Failed to initialize file logger: " + e.getMessage());
         }
     }
-    public static void logInfo(String message) {
-        logger.info("Info:"+message);
+
+    public void logInfo(String message) {
+        logger.info(message);
     }
-    public static void logError(Throwable throwable) {
-        logger.severe("Error: "+throwable.getMessage());
+    public void logError(Throwable throwable) {
+        logger.severe(throwable.getMessage());
     }
+    public void logUnexpected(Throwable throwable){logger.severe(throwable.toString());}
+    private static final Logger logger = Logger.getLogger("VehLogger");
 }

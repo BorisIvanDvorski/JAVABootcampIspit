@@ -1,3 +1,6 @@
+/**
+ * Bazna apstraktna klasa vozilo, za daljnu upotrebu u klasi auto i kamion.
+ */
 public abstract class Vehicle {
     public Vehicle(String manufacturer, String model, int year, String color, long VIN, String fuelType) {
         setManufacturer(manufacturer);
@@ -7,6 +10,11 @@ public abstract class Vehicle {
         setVIN(VIN);
         setFuelType(fuelType);
     }
+
+    /**
+     * Metoda za prikaz vozila.
+     * @return formatirani string za ispis.
+     */
     public String displayVehicle(){
         return String.format("%s(make='%s', model='%s', year=%d, color='%s', vin='%d', fuelType='%s', ",this.getClass().toString().replace("class ",""),getManufacturer(),getModel(),getYear(),getColor(),getVIN(),getFuelType());
     }
